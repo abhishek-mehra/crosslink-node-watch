@@ -8,6 +8,9 @@ DEFAULTS = {
     "mining_address": "",
     "results_log": "",
     "state_dir": "state",
+    "node_state_dir": "",
+    "growth_factor": 2.0,
+    "growth_window_hours": 6,
     "known_good": {},
 }
 
@@ -18,6 +21,6 @@ def load(path):
             cfg = {**DEFAULTS, **tomllib.load(f)}
     except FileNotFoundError:
         raise SystemExit(f"{path} not found: copy config.example.toml to config.toml and edit it")
-    for key in ("cookie_path", "results_log", "state_dir"):
+    for key in ("cookie_path", "results_log", "state_dir", "node_state_dir"):
         cfg[key] = os.path.expanduser(cfg[key])
     return cfg

@@ -9,12 +9,13 @@ It cannot send coins, stake or stop the node. Python 3.11 or newer, standard lib
 
 ## What it does
 
-Two groups of checks so far:
+Three groups of checks so far:
 
 | Group | Question it answers | Checks |
 |---|---|---|
 | `contracts` | Does the node give the same answer when asked the same thing two ways? | `tip_height`, `tip_hash`, `finality`, `money`, `bonds` |
 | `invariants` | Does a fact that must always hold still hold, compared with a rule or with the previous run? | `finality_lag`, `bond_count`, `bond_total`, `conservation`, `on_main_branch` |
+| `meters` | What does the node process cost the machine, and has anything doubled in 6 hours? | `process`, `disk`, `growth` |
 
 ```
 $ python3 -m watch.contracts
@@ -30,6 +31,11 @@ $ python3 -m watch.invariants
 2026-11-17 08:40:24 invariants.bond_total PASS bonded_zats=175067443 same_bonds=1
 2026-11-17 08:40:24 invariants.conservation PASS total_zats=725067443 change=160
 2026-11-17 08:40:24 invariants.on_main_branch PASS matching=3 of=3
+
+$ python3 -m watch.meters
+2026-11-17 12:22:37 meters.process PASS pid=17195 up=747 rss_mb=965 footprint_mb=6158 threads=49 files=262
+2026-11-17 12:22:37 meters.disk PASS state_gb=2.17 wal_gb=0.0 free_gb=47.0
+2026-11-17 12:22:37 meters.growth SKIP no comparable reading from 6 h ago
 ```
 
 - `PASS` with `known=203` means the answers agree only after undoing a difference already reported upstream
@@ -40,8 +46,8 @@ $ python3 -m watch.invariants
   never treated as a wrong answer.
 - The exit code is 1 when any check is `FAIL`, so a shell script or cron job can react.
 
-Each check is described at the top of [`watch/contracts.py`](watch/contracts.py) and
-[`watch/invariants.py`](watch/invariants.py).
+Each check is described at the top of [`watch/contracts.py`](watch/contracts.py),
+[`watch/invariants.py`](watch/invariants.py) and [`watch/meters.py`](watch/meters.py).
 
 ## How it does it
 
@@ -52,6 +58,9 @@ Each check is described at the top of [`watch/contracts.py`](watch/contracts.py)
   short detail. It does not know where its answers come from.
 - **`invariants` remembers one run.** It saves a small snapshot (tip, bond count, totals) in
   `state/invariants.json` and compares the next run with it.
+- **`meters` makes no RPC call.** It finds the process listening on the RPC port, reads the process table
+  (`/proc` on Linux, `ps`, `top` and `lsof` on macOS) and the size of the node's data folder. Its history is
+  its own earlier lines in `results_log`.
 - **Tests need no node.** `tests/fixtures/` holds real replies saved from a node, with the wallet side made
   up. Each check must pass on them and must fail on a copy with one answer altered.
 
@@ -69,26 +78,29 @@ cd crosslink-node-watch
 cp config.example.toml config.toml      # then set cookie_path for your system
 python3 -m watch.contracts
 python3 -m watch.invariants
+python3 -m watch.meters
 ```
 
-`config.toml` has the node address, the cookie path, and three optional settings (your mining address, a file
-to append results to, and known-good block hashes for `on_main_branch`). It is not committed.
+`config.toml` has the node address, the cookie path, and optional settings: your mining address, a file to
+append results to, the node's data folder for the disk meters, and known-good block hashes for
+`on_main_branch`. It is not committed.
 
 To run the checks on a schedule, for example every 5 minutes with cron:
 
 ```
-*/5 * * * * cd /path/to/crosslink-node-watch && python3 -m watch.invariants --quiet
+*/5 * * * * cd /path/to/crosslink-node-watch && python3 -m watch.invariants --quiet && python3 -m watch.meters --quiet
 ```
 
 `--quiet` prints only `FAIL` lines. Set `results_log` in the config to keep every line.
 
 ## Status
 
-Version 0.1.0. Written against Crosslink v17 on the Round 3 feature net. The RPC interface changes between
+Written against Crosslink v17 and v18 on the Round 3 feature net. The RPC interface changes between
 releases; a check that meets an answer in a new shape reports `FAIL shape` and does not guess.
 
-Not included: alerts, dashboards, staking or any other action on the node. Planned next: process meters over
-time (memory, threads, open files) and a small status page.
+Not included: alerts, dashboards, staking or any other action on the node. The Linux side of `meters` is tested on
+GitHub's Linux runners but has not yet been run beside a node on Linux; reports are welcome. Planned next: a
+small status page.
 
 ## Licence
 

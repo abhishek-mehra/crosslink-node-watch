@@ -17,6 +17,16 @@ results_log = ""
 # Where checks that compare with their previous run keep it.
 state_dir = "state"
 
+# The node's data folder, for the disk meters. Leave empty to skip them.
+#   Linux: ~/.cache/zebra
+#   macOS: ~/Library/Caches/zebra
+node_state_dir = ""
+
+# meters.growth fails when a meter is at least growth_factor times its value of growth_window_hours ago.
+# It needs results_log to be set: that file is its history.
+growth_factor = 2.0
+growth_window_hours = 6
+
 # Block hashes the network agrees on, as height = "hash" (the form getblockhash returns). The
 # on_main_branch check fails if this node has a different block at one of them. Take them from a
 # release's built-in checkpoint or from a block explorer. Leave empty to skip the check.

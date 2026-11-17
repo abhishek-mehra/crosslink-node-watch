@@ -142,3 +142,27 @@ code can move between this project and theirs without a licence question. Versio
 
 **Not chosen:** GPL (anyone reusing a check would have to publish their whole tool under it). No licence at
 all (legally nobody may use the code).
+
+## 13. Meters (2026-11-17)
+
+**Chosen:** Linux and macOS. Most node runners use Linux; the author runs macOS. The readers are separate
+(`/proc` on Linux; `ps`, `top`, `lsof` on macOS) and give the same names, except `footprint_mb`, which exists
+only on macOS, where `rss` leaves out compressed memory (a 6 GB node shows 1 GB of rss).
+
+**The node process is found by its RPC port**, not by a program name: the binary is renamed at every release.
+
+**Meters kept:** memory, threads, open files, uptime, data folder size, write-ahead-log size, free disk.
+**Dropped:** swap (the whole machine, not the node) and a crash count (it read a private watcher log).
+
+**The growth rule** is "at least twice the value of 6 hours ago", both numbers in the config. A restart in
+between, or an old reading taken in the first 30 minutes of a process, is not compared.
+
+**History is the results log.** The meter reads its own earlier lines back (decision 8: the log is the
+record), so there is no second file and no state to corrupt.
+
+**An exception to decision 6:** `meters` does not go through `rpc.py`, because it makes no RPC call at all.
+It only reads; it starts `ps`, `top`, `lsof` or `ss` and walks one folder.
+
+**Not tested where it matters most:** the Linux readers run on GitHub's Linux runners against the test's own
+process, and the `ss` parser on the documented format. Nobody has yet run it beside a node on Linux.
+
