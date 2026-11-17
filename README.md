@@ -1,5 +1,7 @@
 # crosslink-node-watch
 
+[![tests](https://github.com/abhishek-mehra/crosslink-node-watch/actions/workflows/tests.yml/badge.svg)](https://github.com/abhishek-mehra/crosslink-node-watch/actions/workflows/tests.yml)
+
 Read-only checks for a [Crosslink](https://github.com/ShieldedLabs/crosslink_monolith) feature-net node. It asks
 the node questions over its RPC and prints one line per check: `PASS`, `FAIL` or `SKIP`.
 
