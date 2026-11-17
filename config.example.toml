@@ -1,0 +1,24 @@
+# Copy this file to config.toml and edit it. config.toml is not committed.
+
+# Where the node's RPC listens.
+node_url = "http://127.0.0.1:8232"
+
+# The node's RPC cookie file.
+#   Linux: ~/.cache/zebra/.cookie
+#   macOS: ~/Library/Caches/zebra/.cookie
+cookie_path = "~/.cache/zebra/.cookie"
+
+# The transparent address your block rewards are paid to. Leave empty to skip the "money" check.
+mining_address = ""
+
+# Append every result line to this file. Leave empty to print only.
+results_log = ""
+
+# Where checks that compare with their previous run keep it.
+state_dir = "state"
+
+# Block hashes the network agrees on, as height = "hash" (the form getblockhash returns). The
+# on_main_branch check fails if this node has a different block at one of them. Take them from a
+# release's built-in checkpoint or from a block explorer. Leave empty to skip the check.
+[known_good]
+# 125202 = "000055cc297557ecec82269320a987d4431a16e05e6f86878c9ef90028eda120"   # Crosslink v17 checkpoint

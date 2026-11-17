@@ -1,0 +1,236 @@
+{
+ "note": "Replies of a Crosslink v17 (3fb7a03) node, Nov 17 2026. Heights, block hashes and the shape of every reply are real. getblockchaininfo is cut down to the fields used. The wallet side (address, bond keys, txids, amounts, status) is made up.",
+ "calls": [
+  {
+   "method": "getblockcount",
+   "params": [],
+   "result": 166907
+  },
+  {
+   "method": "getblockchaininfo",
+   "params": [],
+   "result": {
+    "chain": "test",
+    "blocks": 166907,
+    "bestblockhash": "315515eca689eef05a4c98227da9f1895b12576615acd292600c589232295586"
+   }
+  },
+  {
+   "method": "getbestblockheightandhash",
+   "params": [],
+   "result": {
+    "height": 166907,
+    "hash": [
+     134,
+     85,
+     41,
+     50,
+     146,
+     88,
+     12,
+     96,
+     146,
+     210,
+     172,
+     21,
+     102,
+     87,
+     18,
+     91,
+     137,
+     241,
+     169,
+     125,
+     34,
+     152,
+     76,
+     90,
+     240,
+     238,
+     137,
+     166,
+     236,
+     21,
+     85,
+     49
+    ]
+   }
+  },
+  {
+   "method": "getbestblockhash",
+   "params": [],
+   "result": "315515eca689eef05a4c98227da9f1895b12576615acd292600c589232295586"
+  },
+  {
+   "method": "getblockhash",
+   "params": [
+    166907
+   ],
+   "result": "315515eca689eef05a4c98227da9f1895b12576615acd292600c589232295586"
+  },
+  {
+   "method": "get_tfl_final_block_height_and_hash",
+   "params": [],
+   "result": {
+    "height": 166902,
+    "hash": [
+     48,
+     91,
+     85,
+     171,
+     92,
+     32,
+     40,
+     194,
+     229,
+     65,
+     188,
+     111,
+     238,
+     107,
+     128,
+     31,
+     204,
+     184,
+     94,
+     243,
+     57,
+     58,
+     149,
+     67,
+     242,
+     31,
+     181,
+     125,
+     60,
+     112,
+     16,
+     103
+    ]
+   }
+  },
+  {
+   "method": "get_tfl_final_block_hash",
+   "params": [],
+   "result": "6710703c7db51ff243953a39f35eb8cc1f806bee6fbc41e5c228205cab555b30"
+  },
+  {
+   "method": "getblockhash",
+   "params": [
+    166902
+   ],
+   "result": "6710703c7db51ff243953a39f35eb8cc1f806bee6fbc41e5c228205cab555b30"
+  },
+  {
+   "method": "wallet_spendable_funds",
+   "params": [],
+   "result": {
+    "address": "tmExampleMiningAddress0000000000000",
+    "committed_zats": 0,
+    "pending_zats": 0,
+    "spendable_zats": 0,
+    "tip_height": 166907,
+    "unshielded_zats": 250000000
+   }
+  },
+  {
+   "method": "getaddressbalance",
+   "params": [
+    {
+     "addresses": [
+      "tmExampleMiningAddress0000000000000"
+     ]
+    }
+   ],
+   "result": {
+    "balance": 250000000
+   }
+  },
+  {
+   "method": "wallet_staking_positions",
+   "params": [],
+   "result": {
+    "active": {
+     "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa": [
+      {
+       "create_height": 160000,
+       "create_txid": "0000000000000000000000000000000000000000000000000000000000000001",
+       "initial_val": 50012000,
+       "latest_val": 50012345,
+       "pk": "0102030405060708090a0b0c0d0e0f101112131415161718191a1b1c1d1e1f20"
+      },
+      {
+       "create_height": 160001,
+       "create_txid": "0000000000000000000000000000000000000000000000000000000000000002",
+       "initial_val": 100053976,
+       "latest_val": 100054321,
+       "pk": "4142434445464748494a4b4c4d4e4f505152535455565758595a5b5c5d5e5f60"
+      },
+      {
+       "create_height": 160002,
+       "create_txid": "0000000000000000000000000000000000000000000000000000000000000003",
+       "initial_val": 25000432,
+       "latest_val": 25000777,
+       "pk": "8182838485868788898a8b8c8d8e8f909192939495969798999a9b9c9d9e9fa0"
+      }
+     ]
+    },
+    "withdrawable": []
+   }
+  },
+  {
+   "method": "getbondinfo",
+   "params": [
+    "0102030405060708090a0b0c0d0e0f101112131415161718191a1b1c1d1e1f20"
+   ],
+   "result": null
+  },
+  {
+   "method": "getbondinfo",
+   "params": [
+    "201f1e1d1c1b1a191817161514131211100f0e0d0c0b0a090807060504030201"
+   ],
+   "result": {
+    "amount": 50012345,
+    "status": 0,
+    "last_action_height": 160000
+   }
+  },
+  {
+   "method": "getbondinfo",
+   "params": [
+    "4142434445464748494a4b4c4d4e4f505152535455565758595a5b5c5d5e5f60"
+   ],
+   "result": null
+  },
+  {
+   "method": "getbondinfo",
+   "params": [
+    "605f5e5d5c5b5a595857565554535251504f4e4d4c4b4a494847464544434241"
+   ],
+   "result": {
+    "amount": 100054321,
+    "status": 0,
+    "last_action_height": 160000
+   }
+  },
+  {
+   "method": "getbondinfo",
+   "params": [
+    "8182838485868788898a8b8c8d8e8f909192939495969798999a9b9c9d9e9fa0"
+   ],
+   "result": null
+  },
+  {
+   "method": "getbondinfo",
+   "params": [
+    "a09f9e9d9c9b9a999897969594939291908f8e8d8c8b8a898887868584838281"
+   ],
+   "result": {
+    "amount": 25000777,
+    "status": 0,
+    "last_action_height": 160000
+   }
+  }
+ ]
+}

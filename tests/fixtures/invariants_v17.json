@@ -1,0 +1,116 @@
+{
+ "note": "Replies of a Crosslink v17 (3fb7a03) node, Nov 17 2026. Heights, block hashes and the shape of every reply are real. The wallet side (address, bond keys, txids, amounts) is made up.",
+ "calls": [
+  {
+   "method": "getblockcount",
+   "params": [],
+   "result": 166907
+  },
+  {
+   "method": "get_tfl_final_block_height_and_hash",
+   "params": [],
+   "result": {
+    "height": 166902,
+    "hash": [
+     48,
+     91,
+     85,
+     171,
+     92,
+     32,
+     40,
+     194,
+     229,
+     65,
+     188,
+     111,
+     238,
+     107,
+     128,
+     31,
+     204,
+     184,
+     94,
+     243,
+     57,
+     58,
+     149,
+     67,
+     242,
+     31,
+     181,
+     125,
+     60,
+     112,
+     16,
+     103
+    ]
+   }
+  },
+  {
+   "method": "wallet_spendable_funds",
+   "params": [],
+   "result": {
+    "address": "tmExampleMiningAddress0000000000000",
+    "committed_zats": 0,
+    "pending_zats": 0,
+    "spendable_zats": 300000000,
+    "tip_height": 166907,
+    "unshielded_zats": 250000000
+   }
+  },
+  {
+   "method": "wallet_staking_positions",
+   "params": [],
+   "result": {
+    "active": {
+     "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa": [
+      {
+       "create_height": 160000,
+       "create_txid": "0000000000000000000000000000000000000000000000000000000000000001",
+       "initial_val": 50012000,
+       "latest_val": 50012345,
+       "pk": "0102030405060708090a0b0c0d0e0f101112131415161718191a1b1c1d1e1f20"
+      },
+      {
+       "create_height": 160001,
+       "create_txid": "0000000000000000000000000000000000000000000000000000000000000002",
+       "initial_val": 100053976,
+       "latest_val": 100054321,
+       "pk": "4142434445464748494a4b4c4d4e4f505152535455565758595a5b5c5d5e5f60"
+      },
+      {
+       "create_height": 160002,
+       "create_txid": "0000000000000000000000000000000000000000000000000000000000000003",
+       "initial_val": 25000432,
+       "latest_val": 25000777,
+       "pk": "8182838485868788898a8b8c8d8e8f909192939495969798999a9b9c9d9e9fa0"
+      }
+     ]
+    },
+    "withdrawable": []
+   }
+  },
+  {
+   "method": "getblockhash",
+   "params": [
+    72015
+   ],
+   "result": "00000a27eacb68e9e9846c6bb6927a31e712a64d1b133925ebe0968eadad1bc9"
+  },
+  {
+   "method": "getblockhash",
+   "params": [
+    125202
+   ],
+   "result": "000055cc297557ecec82269320a987d4431a16e05e6f86878c9ef90028eda120"
+  },
+  {
+   "method": "getblockhash",
+   "params": [
+    129374
+   ],
+   "result": "0000572e33977902282ee74b2753178c6221705e06a28412892c48445f7dd5f7"
+  }
+ ]
+}
